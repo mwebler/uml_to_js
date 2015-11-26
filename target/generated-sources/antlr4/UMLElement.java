@@ -34,13 +34,13 @@ public class UMLElement {
 		return type;
 	}
 	public void setType(String type) {
-		if(type.equalsIgnoreCase("\"uml:Class\""))
+		if(type.equalsIgnoreCase("uml:Class"))
 			this.type = ElementType.Class;
-		else if(type.equalsIgnoreCase("\"uml:Operation\""))
+		else if(type.equalsIgnoreCase("uml:Operation"))
 			this.type = ElementType.Operation;
-		else if(type.equalsIgnoreCase("\"uml:Property\""))
+		else if(type.equalsIgnoreCase("uml:Property"))
 			this.type = ElementType.Attribute;
-		else if(type.equalsIgnoreCase("\"uml:Parameter\""))
+		else if(type.equalsIgnoreCase("uml:Parameter"))
 			this.type = ElementType.Parameter;
 	}
 	public String getDataType() {

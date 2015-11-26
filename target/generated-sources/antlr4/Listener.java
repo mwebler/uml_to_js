@@ -22,6 +22,10 @@ public class Listener extends XMLParserBaseListener{
 		elements = new Stack<UMLElement>();
 		controller = new ElementController();
 	}
+	
+	public ElementController getController(){
+		return controller;
+	}
 
 	@Override
 	public void enterElement(XMLParser.ElementContext ctx) {
@@ -40,37 +44,36 @@ public class Listener extends XMLParserBaseListener{
 
 	@Override
 	public void enterA_xmiid(XMLParser.A_xmiidContext ctx) {
-		currentElement.setId(ctx.STRING().toString());
 	}
 
 	@Override
 	public void enterA_name(XMLParser.A_nameContext ctx) {
-		currentElement.setName(ctx.STRING().toString());
+		currentElement.setName(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override
 	public void enterA_visibility(XMLParser.A_visibilityContext ctx) {
-		currentElement.setVisibility(ctx.STRING().toString());
+		currentElement.setVisibility(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override
 	public void enterA_type(XMLParser.A_typeContext ctx) {
-		currentElement.setType(ctx.STRING().toString());
+		currentElement.setType(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override
 	public void enterA_datatype(XMLParser.A_datatypeContext ctx) {
-		currentElement.setDataType(ctx.STRING().toString());
+		currentElement.setDataType(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override
 	public void enterA_return(XMLParser.A_returnContext ctx) {
-		currentElement.setReturn(Boolean.parseBoolean(ctx.STRING().toString()));
+		currentElement.setReturn(Boolean.parseBoolean(ctx.STRING().toString().replace("\"", "")));
 	}
 
 	@Override
 	public void enterA_static(XMLParser.A_staticContext ctx) {
-		currentElement.setStatic(Boolean.parseBoolean(ctx.STRING().toString()));
+		currentElement.setStatic(Boolean.parseBoolean(ctx.STRING().toString().replace("\"", "")));
 	}
 
 	@Override

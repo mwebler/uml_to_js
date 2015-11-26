@@ -16,6 +16,10 @@ public class ElementController {
 		this.classes = new ArrayList<JSClass>();
 	}
 	
+	public List<JSClass> getClasses(){
+		return classes;
+	}
+	
 	public void addElement(UMLElement e){
 		switch (e.getType()) {
 		case Class:
