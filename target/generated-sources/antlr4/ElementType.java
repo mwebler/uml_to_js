@@ -1,4 +1,4 @@
 
 public enum ElementType {
-	Class, Attribute, Operation, Parameter;
+	Class, Attribute, Operation, Parameter, None;
 }

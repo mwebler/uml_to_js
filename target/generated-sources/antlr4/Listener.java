@@ -9,64 +9,18 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 
 
+
 public class Listener extends XMLParserBaseListener{
 	
 	UMLElement currentElement;
 	Stack<UMLElement> elements;
+	
+	ElementController controller;
 
 	public Listener() {
 		// TODO Auto-generated constructor stub
 		elements = new Stack<UMLElement>();
-	}
-	
-	@Override
-	public void enterJsclass(XMLParser.JsclassContext ctx) {
-		
-	}
-
-	@Override
-	public void exitJsclass(XMLParser.JsclassContext ctx) {
-		
-	}
-
-	@Override
-	public void enterOwnedattr(XMLParser.OwnedattrContext ctx) {
-		
-	}
-
-	@Override
-	public void exitOwnedattr(XMLParser.OwnedattrContext ctx) {
-		
-	}
-
-	@Override
-	public void enterOwnedoper(XMLParser.OwnedoperContext ctx) {
-		
-	}
-
-	@Override
-	public void exitOwnedoper(XMLParser.OwnedoperContext ctx) {
-		
-	}
-
-	@Override
-	public void enterOwnedparam(XMLParser.OwnedparamContext ctx) {
-		
-	}
-
-	@Override
-	public void exitOwnedparam(XMLParser.OwnedparamContext ctx) {
-		
-	}
-
-	@Override
-	public void enterGenericelem(XMLParser.GenericelemContext ctx) {
-		
-	}
-
-	@Override
-	public void exitGenericelem(XMLParser.GenericelemContext ctx) {
-		
+		controller = new ElementController();
 	}
 
 	@Override
@@ -78,7 +32,10 @@ public class Listener extends XMLParserBaseListener{
 	@Override
 	public void exitElement(XMLParser.ElementContext ctx) {
 		currentElement = elements.pop();
-		System.out.println("exit element: " + currentElement.getName());
+		if(currentElement != null){
+			System.out.println("exit element: " + currentElement.getName());
+			controller.addElement(currentElement);
+		}
 	}
 
 	@Override
@@ -93,26 +50,37 @@ public class Listener extends XMLParserBaseListener{
 
 	@Override
 	public void enterA_visibility(XMLParser.A_visibilityContext ctx) {
+		currentElement.setVisibility(ctx.STRING().toString());
 	}
 
 	@Override
 	public void enterA_type(XMLParser.A_typeContext ctx) {
+		currentElement.setType(ctx.STRING().toString());
 	}
 
 	@Override
 	public void enterA_datatype(XMLParser.A_datatypeContext ctx) {
+		currentElement.setDataType(ctx.STRING().toString());
 	}
 
 	@Override
 	public void enterA_return(XMLParser.A_returnContext ctx) {
+		currentElement.setReturn(Boolean.parseBoolean(ctx.STRING().toString()));
 	}
 
 	@Override
 	public void enterA_static(XMLParser.A_staticContext ctx) {
+		currentElement.setStatic(Boolean.parseBoolean(ctx.STRING().toString()));
 	}
 
 	@Override
 	public void enterA_generic(XMLParser.A_genericContext ctx) {
+	}
+
+	@Override
+	public void exitDocument(XMLParser.DocumentContext ctx) {
+		// TODO Auto-generated method stub
+		super.exitDocument(ctx);
 	}
 
 		

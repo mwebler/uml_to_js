@@ -23,6 +23,12 @@ public class Attribute {
 	public void setVisibility(String visibility) {
 		this.visibility = visibility;
 	}
+	public Attribute(String id, String name, String visibility) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.visibility = visibility;
+	}
 	
 	
 }

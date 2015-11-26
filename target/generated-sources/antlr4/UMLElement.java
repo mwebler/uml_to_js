@@ -7,6 +7,10 @@ public class UMLElement {
 	private String dataType;
 	private boolean isReturn;
 	private boolean isStatic;
+
+	public UMLElement(){
+		this.type = ElementType.None;
+	}
 	
 	public String getId() {
 		return id;
@@ -29,8 +33,15 @@ public class UMLElement {
 	public ElementType getType() {
 		return type;
 	}
-	public void setType(ElementType type) {
-		this.type = type;
+	public void setType(String type) {
+		if(type.equalsIgnoreCase("\"uml:Class\""))
+			this.type = ElementType.Class;
+		else if(type.equalsIgnoreCase("\"uml:Operation\""))
+			this.type = ElementType.Operation;
+		else if(type.equalsIgnoreCase("\"uml:Property\""))
+			this.type = ElementType.Attribute;
+		else if(type.equalsIgnoreCase("\"uml:Parameter\""))
+			this.type = ElementType.Parameter;
 	}
 	public String getDataType() {
 		return dataType;

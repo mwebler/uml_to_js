@@ -11,6 +11,16 @@ public class JSClass {
 	private List<Operation> operations;
 	private List<Attribute> attributes;
 	
+	public JSClass(String id, String name, String visibility,
+			List<Operation> operations, List<Attribute> attributes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.visibility = visibility;
+		this.operations = operations;
+		this.attributes = attributes;
+	}
+
 	public JSClass(){
 		operations = new ArrayList<Operation>();
 		attributes = new ArrayList<Attribute>();

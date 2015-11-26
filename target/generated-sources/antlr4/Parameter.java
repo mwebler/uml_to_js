@@ -23,6 +23,12 @@ public class Parameter {
 	public void setReturn(boolean isReturn) {
 		this.isReturn = isReturn;
 	}
+	public Parameter(String id, String name, boolean isReturn) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.isReturn = isReturn;
+	}
 	
 	
 }

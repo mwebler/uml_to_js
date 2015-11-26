@@ -13,6 +13,17 @@ public class Operation {
 	
 	
 
+	public Operation(String id, String name, String visibility,
+			boolean isStatic, List<Parameter> parameters) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.visibility = visibility;
+		this.isStatic = isStatic;
+		this.parameters = parameters;
+	}
+
+
 	public Operation() {
 		parameters = new ArrayList<Parameter>();
 	}
