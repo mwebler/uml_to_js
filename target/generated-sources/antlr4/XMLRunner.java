@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-public class XMLRunner {
+public class XMLRunner{
 
 	public static void main( String[] args) throws Exception 
     {
@@ -22,7 +22,14 @@ public class XMLRunner {
         
 
         XMLParser parser = new XMLParser(tokens);
-        ParseTree tree = parser.document(); // begin parsing at rule 'r'
-        System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+        //ParseTree tree = parser.document();
+        
+        XMLParser.DocumentContext document = parser.document();
+        
+        ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
+        Listener extractor = new Listener();
+        walker.walk(extractor, document); // initiate walk of tree with listener
     }
+	
+	
 }

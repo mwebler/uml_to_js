@@ -37,14 +37,42 @@ prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
 
 content     :   chardata?
                 ((element | reference | CDATA | PI | COMMENT) chardata?)* ;
+                
+element		:	jsclass | ownedattr | ownedoper | ownedparam | genericelem ;         
 
-element     :   '<' Name attribute* '>' content '<' '/' Name '>'
+jsclass     :   '<' PACKELEMEN attribute* '>' content '<' '/' PACKELEMEN '>'
+            |   '<' PACKELEMEN attribute* '/>'
+            ;
+
+ownedattr   :   '<' OWNEDATTR attribute* '>' content '<' '/' OWNEDATTR '>'
+            |   '<' OWNEDATTR attribute* '/>'
+            ;
+             
+ownedoper   :   '<' OWNEDOPER attribute* '>' content '<' '/' OWNEDOPER '>'
+            |   '<' OWNEDOPER attribute* '/>'                     
+            ;           
+
+ownedparam  :   '<' OWNEDPARAM attribute* '>' content '<' '/' OWNEDPARAM '>'
+            |   '<' OWNEDPARAM attribute* '/>'
+            ;
+            
+genericelem :   '<' Name attribute* '>' content '<' '/' Name '>'
             |   '<' Name attribute* '/>'
             ;
 
 reference   :   EntityRef | CharRef ;
 
-attribute   :   Name '=' STRING ; // Our STRING is AttValue in spec
+attribute   :   a_xmiid | a_name | a_visibility | a_type | a_datatype | a_return | a_static | a_generic ;
+
+a_xmiid		:	E_XMIID '=' STRING ;
+a_name		:	E_NAME '=' STRING ;
+a_visibility:	E_VISIBILITY '=' STRING ;
+a_type		:	E_TYPE '=' STRING ;
+a_datatype	:	E_DATATYPE '=' STRING ;
+a_return	:	E_RETURN '=' STRING ;
+a_static	:	E_STATIC '=' STRING ;
+a_generic	: 	Name '=' STRING ; // Our STRING is AttValue in spec
+
 
 /** ``All text that is not markup constitutes the character data of
  *  the document.''
@@ -52,3 +80,4 @@ attribute   :   Name '=' STRING ; // Our STRING is AttValue in spec
 chardata    :   TEXT | SEA_WS ;
 
 misc        :   COMMENT | PI | SEA_WS ;
+

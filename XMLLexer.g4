@@ -50,6 +50,18 @@ TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
 
 // ----------------- Everything INSIDE of a tag ---------------------
 mode INSIDE;
+PACKELEMEN	: 	'packagedElement' ;
+OWNEDATTR	:	'ownedAttribute' ;
+OWNEDOPER	:	'ownedOperation' ;
+OWNEDPARAM	:	'ownedParameter' ;
+
+E_XMIID		:	'xmi:id' ;
+E_NAME		:	'name' ;
+E_VISIBILITY	:	'visibility' ;
+E_TYPE		:	'xmi:type' ;
+E_DATATYPE	:	'type' ;
+E_RETURN	:	'direction' ;
+E_STATIC	:	'isStatic' ;
 
 CLOSE       :   '>'                     -> popMode ;
 SPECIAL_CLOSE:  '?>'                    -> popMode ; // close <?xml...?>
@@ -59,6 +71,7 @@ EQUALS      :   '=' ;
 STRING      :   '"' ~[<"]* '"'
             |   '\'' ~[<']* '\''
             ;
+        
 Name        :   NameStartChar NameChar* ;
 S           :   [ \t\r\n]               -> skip ;
 
