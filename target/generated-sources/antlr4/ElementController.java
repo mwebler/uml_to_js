@@ -8,11 +8,13 @@ public class ElementController {
 	List<Parameter> parameters;
 	List<Attribute> attributes;
 	List<JSClass> classes;
+	String generalization;
 	
 	public ElementController() {
 		this.operations = new ArrayList<Operation>();
 		this.parameters = new ArrayList<Parameter>();
 		this.attributes = new ArrayList<Attribute>();
+		this.generalization = null;
 		this.classes = new ArrayList<JSClass>();
 	}
 	
@@ -33,6 +35,9 @@ public class ElementController {
 			break;
 		case Parameter:
 			addParameter(e);
+			break;
+		case Generalization:
+			addGeneralization(e);
 			break;
 		default:
 			break;
@@ -55,8 +60,13 @@ public class ElementController {
 		operations.add(o);
 	}
 	
+	public void addGeneralization(UMLElement e){
+		this.generalization = e.getGeneralId();
+	}
+	
 	public void addClass(UMLElement e){
-		JSClass c = new JSClass(e.getId(), e.getName(), e.getVisibility(),this.operations, this.attributes);
+		JSClass c = new JSClass(e.getId(), e.getName(), e.getVisibility(), this.generalization, this.operations, this.attributes);
+		this.generalization = null;
 		this.operations = new ArrayList<Operation>();
 		this.attributes = new ArrayList<Attribute>();
 		classes.add(c);

@@ -62,6 +62,7 @@ E_TYPE		:	'xmi:type' ;
 E_DATATYPE	:	'type' ;
 E_RETURN	:	'direction' ;
 E_STATIC	:	'isStatic' ;
+E_GENERAL	:	'general' ;
 
 CLOSE       :   '>'                     -> popMode ;
 SPECIAL_CLOSE:  '?>'                    -> popMode ; // close <?xml...?>

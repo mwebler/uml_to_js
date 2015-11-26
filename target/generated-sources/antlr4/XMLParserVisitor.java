@@ -119,6 +119,12 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitA_static(XMLParser.A_staticContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#a_general}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitA_general(XMLParser.A_generalContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#a_generic}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

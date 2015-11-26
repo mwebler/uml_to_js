@@ -7,6 +7,15 @@ public class UMLElement {
 	private String dataType;
 	private boolean isReturn;
 	private boolean isStatic;
+	private String generalId;
+
+	public String getGeneralId() {
+		return generalId;
+	}
+
+	public void setGeneralId(String generalId) {
+		this.generalId = generalId;
+	}
 
 	public UMLElement(){
 		this.type = ElementType.None;
@@ -42,6 +51,8 @@ public class UMLElement {
 			this.type = ElementType.Attribute;
 		else if(type.equalsIgnoreCase("uml:Parameter"))
 			this.type = ElementType.Parameter;
+		else if(type.equalsIgnoreCase("uml:Generalization"))
+			this.type = ElementType.Generalization;
 	}
 	public String getDataType() {
 		return dataType;

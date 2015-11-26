@@ -16,21 +16,38 @@ public class XMLRunner{
 
 	public static void generateJavascript(JSClass c){
 		StringBuilder s = new StringBuilder();
-		s.append("class " + c.getName() + "{");
+		
+		String extend = "";
+		if(c.getExtendsId() != null){
+			extend = " extends " + c.getExtendsId();
+		}
+		
+		s.append("class " + c.getName() + extend + "{");
 		s.append(System.getProperty("line.separator"));
 			
 		
-		s.append("constructor(){");
-		s.append(System.getProperty("line.separator"));
+		s.append("\tconstructor(");
+		StringBuilder param = new StringBuilder();
 		for (Attribute a : c.getAttributes()) {
-			s.append("this." + a.getName() + " = " + a.getName() + ";");
+			param.append(a.getName() + ",");
+		}
+		if(param.length() > 0)
+			s.append(param.substring(0, param.length() - 1));
+		
+		s.append("){");
+		s.append(System.getProperty("line.separator"));
+		
+		for (Attribute a : c.getAttributes()) {
+			s.append("\t\tthis." + a.getName() + " = " + a.getName() + ";");
 			s.append(System.getProperty("line.separator"));
 		}
-		s.append("}");
+		s.append("\t}");
 		s.append(System.getProperty("line.separator"));
 		
 		for (Operation o : c.getOperations()) {
-			StringBuilder param = new StringBuilder();
+			param = new StringBuilder();
+			s.append("\t");
+			
 			//static method
 			if(o.isStatic())
 				s.append("static ");
@@ -49,7 +66,7 @@ public class XMLRunner{
 				s.append(param.substring(0, param.length() - 1));
 			s.append("){");
 			s.append(System.getProperty("line.separator"));
-			s.append("}");
+			s.append("\t}");
 			s.append(System.getProperty("line.separator"));
 		}
 		
@@ -77,7 +94,17 @@ public class XMLRunner{
         Listener extractor = new Listener();
         walker.walk(extractor, document); // initiate walk of tree with listener
         
+        
+        
        for (JSClass c : extractor.getController().getClasses()) {
+    	   
+    	   if(c.getExtendsId() != null){
+    		   for (JSClass cl : extractor.getController().getClasses()) {
+    			   if(cl.getId() != null && cl.getId().equals(c.getExtendsId()))
+    				   c.setExtendsId(cl.getName());
+    		   }
+    	   }
+    	   
     	   generateJavascript(c);
        }
     }

@@ -7,18 +7,20 @@ public class JSClass {
 	private String id;
 	private String name;
 	private String visibility;
+	private String extendsId;
 	
 	private List<Operation> operations;
 	private List<Attribute> attributes;
 	
-	public JSClass(String id, String name, String visibility,
+	public JSClass(String id, String name, String visibility, String extendsId,
 			List<Operation> operations, List<Attribute> attributes) {
-		super();
+	
 		this.id = id;
 		this.name = name;
 		this.visibility = visibility;
 		this.operations = operations;
 		this.attributes = attributes;
+		this.extendsId = extendsId;
 	}
 
 	public JSClass(){
@@ -63,6 +65,14 @@ public class JSClass {
 	}
 	public void setAttributes(List<Attribute> attributes) {
 		this.attributes = attributes;
+	}
+
+	public String getExtendsId() {
+		return extendsId;
+	}
+
+	public void setExtendsId(String extendsId) {
+		this.extendsId = extendsId;
 	}
 
 	

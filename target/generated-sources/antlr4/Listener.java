@@ -37,13 +37,13 @@ public class Listener extends XMLParserBaseListener{
 	public void exitElement(XMLParser.ElementContext ctx) {
 		currentElement = elements.pop();
 		if(currentElement != null){
-			System.out.println("exit element: " + currentElement.getName());
 			controller.addElement(currentElement);
 		}
 	}
 
 	@Override
 	public void enterA_xmiid(XMLParser.A_xmiidContext ctx) {
+		currentElement.setId(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override
@@ -78,6 +78,11 @@ public class Listener extends XMLParserBaseListener{
 	@Override
 	public void enterA_static(XMLParser.A_staticContext ctx) {
 		currentElement.setStatic(Boolean.parseBoolean(ctx.STRING().toString().replace("\"", "")));
+	}
+	
+	@Override
+	public void enterA_general(XMLParser.A_generalContext ctx) {
+		currentElement.setGeneralId(ctx.STRING().toString().replace("\"", ""));
 	}
 
 	@Override

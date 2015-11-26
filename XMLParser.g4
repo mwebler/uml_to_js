@@ -62,7 +62,7 @@ genericelem :   '<' Name attribute* '>' content '<' '/' Name '>'
 
 reference   :   EntityRef | CharRef ;
 
-attribute   :   a_xmiid | a_name | a_visibility | a_type | a_datatype | a_return | a_static | a_generic ;
+attribute   :   a_xmiid | a_name | a_visibility | a_type | a_datatype | a_return | a_static | a_general | a_generic ;
 
 a_xmiid		:	E_XMIID '=' STRING ;
 a_name		:	E_NAME '=' STRING ;
@@ -71,6 +71,7 @@ a_type		:	E_TYPE '=' STRING ;
 a_datatype	:	E_DATATYPE '=' STRING ;
 a_return	:	E_RETURN '=' STRING ;
 a_static	:	E_STATIC '=' STRING ;
+a_general	:	E_GENERAL '=' STRING ;
 a_generic	: 	Name '=' STRING ; // Our STRING is AttValue in spec
 
 

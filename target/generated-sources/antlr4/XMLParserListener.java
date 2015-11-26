@@ -188,6 +188,16 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitA_static(XMLParser.A_staticContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#a_general}.
+	 * @param ctx the parse tree
+	 */
+	void enterA_general(XMLParser.A_generalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#a_general}.
+	 * @param ctx the parse tree
+	 */
+	void exitA_general(XMLParser.A_generalContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#a_generic}.
 	 * @param ctx the parse tree
 	 */
