@@ -68,7 +68,11 @@ public class Listener extends XMLParserBaseListener{
 
 	@Override
 	public void enterA_return(XMLParser.A_returnContext ctx) {
-		currentElement.setReturn(Boolean.parseBoolean(ctx.STRING().toString().replace("\"", "")));
+		String direction = ctx.STRING().toString().replace("\"", "");
+		boolean r = true;
+		if(direction.equals("in"))
+			r = false;
+		currentElement.setReturn(r);
 	}
 
 	@Override

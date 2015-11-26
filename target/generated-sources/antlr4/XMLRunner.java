@@ -27,7 +27,24 @@ public class XMLRunner{
 			s.append(System.getProperty("line.separator"));
 		}
 		s.append("}");
+		s.append(System.getProperty("line.separator"));
 		
+		for (Operation o : c.getOperations()) {
+			StringBuilder param = new StringBuilder();
+			s.append(o.getName() + "(");
+			for (Parameter p : o.getParameters()) {
+				if(!p.isReturn())
+					param.append(p.getName() + ",");
+			}
+			if(param.length() > 0)
+				s.append(param.substring(0, param.length() - 1));
+			s.append("){");
+			s.append(System.getProperty("line.separator"));
+			s.append("}");
+			s.append(System.getProperty("line.separator"));
+		}
+		
+		s.append("}");
 		System.out.println(s.toString());
 	}
 	
