@@ -31,6 +31,15 @@ public class XMLRunner{
 		
 		for (Operation o : c.getOperations()) {
 			StringBuilder param = new StringBuilder();
+			//static method
+			if(o.isStatic())
+				s.append("static ");
+			
+			//pseudo privacy
+			if(o.getVisibility().equals("private"))
+				s.append("_");
+			
+			//build signature
 			s.append(o.getName() + "(");
 			for (Parameter p : o.getParameters()) {
 				if(!p.isReturn())
