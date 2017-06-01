@@ -1,4 +1,3 @@
 # uml_to_js
-Tradutor UML Para JavaScript
-Apresentação:
-https://prezi.com/ncqekewwv8hp/tradutor-uml-para-javascript/
+
+An javascript classes generator from UML class diagram XML built with ANTLR.
